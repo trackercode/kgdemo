@@ -1,0 +1,23 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    username: root
+    password: KG_^2Fir9C5
+    url: jdbc:mysql://localhost:3366/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+#mapper-locations应该具体查看target/classes下的目录结构
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  mapper-locations: classpath*:mybatis/mapping/*Mapping.xml
+  type-aliases-package: com.mvc.kgdemo.entity
+
+#showSql
+logging:
+  level:
+    com.mvc.kgdemo.mapper: debug

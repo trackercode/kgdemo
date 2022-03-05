@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mvc.kgdemo.mapper.AccountUserBindMapper">
+
+   <resultMap id="AccountUserBindMap" type="com.mvc.kgdemo.entity.AccountUserBind">
+        <result column="aid" jdbcType="INTEGER" property="id" />
+        <result column="uid" jdbcType="INTEGER" property="uid" />
+        <result column="money" jdbcType="DOUBLE" property="money" />
+<!--       一对一映射-->
+        <association property="user" column="uid" javaType="user">
+            <result column="id" jdbcType="INTEGER" property="id" />
+            <result column="username" jdbcType="VARCHAR" property="userName" />
+            <result column="birthday" jdbcType="DATE" property="birthday" />
+            <result column="sex" jdbcType="CHAR" property="sex" />
+            <result column="address" jdbcType="VARCHAR" property="address" />
+        </association>
+    </resultMap>
+
+<select id="findOneAccount" resultMap="AccountUserBindMap">
+         select u.*,a.id as aid,a.uid,a.money from account a ,user u where a.uid=u.id and a.uid = #{id} ;
+    </select>
+<!--    <select id="findOneAccount" resultType="com.mvc.kgdemo.entity.AccountUserBind">-->
+<!--         select u.*,a.id as aid,a.uid,a.money from account a ,user u where a.uid=u.id;-->
+<!--    </select>-->
+
+    <select id="findAllAccount" resultType="com.mvc.kgdemo.entity.AccountUserBind">
+        select u.*,a.id as aid,a.uid,a.money from account a ,user u where a.uid=u.id;
+    </select>
+    <select id="findAllAccount2" resultType="com.mvc.kgdemo.entity.AccountUser2">
+        select u.*,a.id as aid,a.uid,a.money,u.address as address1 from account a ,user u where a.uid=u.id;
+    </select>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mvc.kgdemo.mapper.PersonsMapper">
+
+    <resultMap id="BaseResultMap" type="com.mvc.kgdemo.entity.Persons">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="createDatetime " jdbcType="VARCHAR" property="createDatetime " />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="zone" jdbcType="VARCHAR" property="zone" />
+    </resultMap>
+
+    <select id="findSex" resultType="java.util.HashMap">
+        select distinct p.sex from persons p
+    </select>
+
+    <select id="findAll" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select p.id as "id",
+                p.create_datetime as "createDatetime",
+                p.email as "email",
+                p.phone as "phone",
+                p.sex as "sex",
+                p.username as "username",
+                p.zone as "zone"
+                from persons p where 1=1
+        <if test="sex != null and sex != ''">AND p.sex = #{sex}</if>
+        <if test="email != null and email != ''">AND p.email LIKE '%${email}%'</if>
+    </select>
+    <select id="findBySexAndEmailContains" resultType="com.mvc.kgdemo.entity.Persons">
+        select * from user where id = #{id}
+    </select>
+    <select id="findBySex" resultType="java.util.HashMap">
+        <if test="sex != null and sex != ''">
+            select distinct p.sex from persons p where p.sex = #{sex}
+        </if>
+
+    </select>
+
+    <select id="findById" resultType="com.mvc.kgdemo.entity.Persons">
+        select * from user
+    </select>
+
+    <select id="findOne" resultType="com.mvc.kgdemo.entity.Persons">
+        select p.id as "id",
+               p.create_datetime as "createDatetime",
+               p.email as "email",
+               p.phone as "phone",
+               p.sex as "sex",
+               p.username as "username",
+               p.zone as "zone"
+        from persons p where p.id = #{itemId}
+    </select>
+
+    <update id="updateById" parameterType="com.mvc.kgdemo.entity.Persons">
+        UPDATE persons SET
+        <trim suffix="" suffixOverrides=",">
+            <if test="id != null and id != ''">id = #{id}, </if>
+            <if test="createDatetime != null and createDatetime != ''">create_datetime  = #{createDatetime}, </if>
+            <if test="email != null and email != ''">email = #{email}, </if>
+            <if test="phone != null and phone != ''">phone = #{phone}, </if>
+            <if test="sex != null and sex != ''">sex = #{sex}, </if>
+            <if test="username != null and username != ''">username = #{username}, </if>
+            <if test="zone != null and zone != ''">zone = #{zone}, </if>
+        </trim>
+        WHERE 1=1
+        AND id = #{id}
+    </update>
+
+</mapper>
