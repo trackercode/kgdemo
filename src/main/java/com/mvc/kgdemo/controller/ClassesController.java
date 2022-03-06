@@ -1,6 +1,6 @@
 package com.mvc.kgdemo.controller;
 
-import com.mvc.kgdemo.entity.Classes;
+import com.mvc.kgdemo.domain.Classes;
 import com.mvc.kgdemo.service.ClassesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

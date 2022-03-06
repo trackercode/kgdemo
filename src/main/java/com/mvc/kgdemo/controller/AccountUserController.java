@@ -1,10 +1,10 @@
 package com.mvc.kgdemo.controller;
 
 
-import com.mvc.kgdemo.entity.AccountUser;
-import com.mvc.kgdemo.entity.AccountUser2;
-import com.mvc.kgdemo.entity.AccountUserBind;
-import com.mvc.kgdemo.entity.UserOtm;
+import com.mvc.kgdemo.domain.AccountUser;
+import com.mvc.kgdemo.domain.AccountUser2;
+import com.mvc.kgdemo.domain.AccountUserBind;
+import com.mvc.kgdemo.domain.UserOtm;
 import com.mvc.kgdemo.service.AccountUserBindService;
 import com.mvc.kgdemo.service.AccountUserService;
 import com.mvc.kgdemo.service.UserOtmService;

@@ -1,9 +1,8 @@
 package com.mvc.kgdemo.service;
 
 
-import com.mvc.kgdemo.entity.AccountUser;
-import com.mvc.kgdemo.entity.UserOtm;
-import com.mvc.kgdemo.mapper.UserOtmMapper;
+import com.mvc.kgdemo.domain.UserOtm;
+import com.mvc.kgdemo.dao.UserOtmDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,9 @@ import java.util.List;
 public class UserOtmService {
 
     @Autowired
-    UserOtmMapper userOtmMapper;
+    UserOtmDao userOtmDao;
 
     public List<UserOtm> findAllAccount(){
-        return userOtmMapper.findAll();
+        return userOtmDao.findAll();
     }
 }

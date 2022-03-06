@@ -1,6 +1,8 @@
 <!--查询条件组件-->
 <template>
-    <el-form :inline="true" :model="formInline">
+  <div>
+
+    <el-form :inline="true" :model="formInline" >
         <!--性别查询条件下拉选宽：1先从数据字典中选中性别；
         2将选中的性别赋值给 model： formInline.sex 以实现对描述条件的级联渲染条件-->
         <el-form-item label="性别">
@@ -22,9 +24,14 @@
         <el-form-item v-else='formInline.sex' label="描述">
             <el-input v-model="formInline.email" disabled placeholder="请输入邮箱后缀"></el-input>
         </el-form-item>
-
+      <el-form-item>
+        <el-button type="primary" @click="handleExportCommonData">导出</el-button>
+      </el-form-item>
     </el-form>
+
+  </div>
 </template>
+
 
 <script>
     import lodash from 'lodash'
@@ -42,7 +49,7 @@
                     page: 1,
                     size: 5
                 },
-                formLabelWidth: '120px'
+                formLabelWidth: '120px',
             }
         },
         //监听属性，当formInline.sex改变时调用函数filterResultData
@@ -60,20 +67,6 @@
            **/
             filterResultData: _.debounce(
                 function () {
-                    // this.$axios.get("http://127.0.0.1:8088/api/persons", {
-                    //     params: {
-                    //         sex: this.formInline.sex,
-                    //         email: this.formInline.email,
-                    //     }
-                    // }).then((response) => {
-                    //     //往响应数据中中添加新数据
-                    //     response.data['sex'] = this.formInline.sex;
-                    //     response.data['email'] = this.formInline.email;
-                    //     Bus.$emit('filterResultData', response.data);
-                    //     console.log("filterResultData:",response.data);
-                    // }).catch(function (response) {
-                    //     console.log(response)
-                    // });
                   this.$axios({
                     url: 'http://127.0.0.1:8088/api/persons/query',
                     method: 'post',
@@ -100,7 +93,50 @@
                 },
                 500
             ),
-        }
+
+          /**
+           *导出
+           *
+           */
+
+          handleExportCommonData() {
+            /* if (exportUrl) {
+                 this.handleMsg(null, '请填写附件导入地址，必须带上下文根！', 'error')
+             }*/
+            // let loading = this.$loading({fullscreen: true})
+            this.$axios({
+              url: 'http://127.0.0.1:8088/api/persons/exportExcel',
+              method: 'post',
+              contentType: 'application/json;charset=utf-8',
+              responseType: 'blob',
+              data: {"req_data": this.formInline}
+            }).then(response => {
+              debugger;
+              // let fileName = window.decodeURI(response.headers['content-disposition'].split('=')[1])
+               let fileName = '测试'
+              let link = document.createElement('a')
+              let url = window.URL.createObjectURL(new Blob([response.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'}))
+              link.target = '_blank'
+              link.href = url
+              link.download = fileName
+              document.body.appendChild(link)
+              link.click()
+              document.body.removeChild(link)
+              URL.revokeObjectURL(url)
+              // loading.close()
+            }).catch((e) => {
+              console.log(e)
+              // loading.close()
+              // this.handleMsg('', e, 'error')
+            })
+          },
+        },
+      /**
+       * 导出
+       */
+      // exportData() {
+      //   this.handleExportCommonData('http://127.0.0.1:8088/api/persons/exportExcel', {"req_data": this.formInline});
+      // },
     }
 
 

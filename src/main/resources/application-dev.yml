@@ -14,8 +14,8 @@ spring:
 #mapper-locations应该具体查看target/classes下的目录结构
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml
-  mapper-locations: classpath*:mybatis/mapping/*Mapping.xml
-  type-aliases-package: com.mvc.kgdemo.entity
+  mapper-locations: classpath*:mybatis/mapper/*Mapping.xml
+  type-aliases-package: com.mvc.kgdemo.domain
 
 #showSql
 logging:

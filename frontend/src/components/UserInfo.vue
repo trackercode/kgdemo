@@ -19,6 +19,7 @@
             <el-col :span="20" class="content">
                 <!--调用查询条件组件-->
                 <db-filterinput></db-filterinput>
+
                 <!--调用表组件：内容区-->
                 <db-table></db-table>
             </el-col>

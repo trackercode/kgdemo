@@ -1,8 +1,8 @@
 package com.mvc.kgdemo.service;
 
 
-import com.mvc.kgdemo.entity.User;
-import com.mvc.kgdemo.mapper.UserMapper;
+import com.mvc.kgdemo.domain.User;
+import com.mvc.kgdemo.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +13,15 @@ import java.util.Map;
 @Service
 public class UserService {
     @Autowired
-    UserMapper userMapper;
+    UserDao userDao;
     public User findOne(int id){
-        return userMapper.findOne(id);
+        return userDao.findOne(id);
     }
 
     public List<User> findAll(){
-        return userMapper.findAll();
+        return userDao.findAll();
     }
     public List<Map<String, Object>> queryUserBySex(Map map){
-        return userMapper.queryUserBySex(map);
+        return userDao.queryUserBySex(map);
     }
 }
