@@ -181,15 +181,19 @@
             //编辑：点击编辑时设置对话框为见。通过点击事件获取入参
             //参见页面：<el-button @click="editItem(scope.$index, tableData.data)"
             editItem: function (index, rows) {
+            console.log("index： ",index);
+            console.log("rows： ",rows);
                 this.dialogFormVisible = true;
                 const itemId = rows[index].id;
                 const idurl = 'http://127.0.0.1:8088/api/persons/detail/' + itemId;
                 this.$axios.get(idurl).then((response) => {
                     // this.form = JSON.parse(response.data);
                   this.form = response.data;
+                  console.log("点击编辑时thisForm",this.form)
                 }).catch(function (response) {
                     console.log(response)
                 });
+                console.log("父组件中的值>>> ",this.dialogFormVisible,this.form)
             },
             //日期格式化
             formatter(row, column) {

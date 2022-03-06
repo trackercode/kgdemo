@@ -1,6 +1,6 @@
 <!--编辑区域-->
 <template>
-    <el-dialog title="编辑" v-model="dialogFormVisible" :close-on-click-modal="false" :show-close="false">
+    <el-dialog title="编辑" :visible="dialogFormVisible" :close-on-click-modal="false" :show-close="false">
         <el-form :model="form">
             <el-form-item label="用户编号" :label-width="formLabelWidth">
                 <el-input :disabled="true" v-model="form.id" auto-complete="off"></el-input>
@@ -41,8 +41,20 @@
         },
         //父组DbTable件传递过来的两个参数：对话框的可见性，表单
         props: ['dialogFormVisible', 'form'],
-
-        methods: {
+       mounted() {
+         // this.dialogFormVisible=true,
+         //   this.form={
+         //     "createDatetime": "2017-06-29 05:37:14",
+         //     "phone": "8613000001113",
+         //     "zone": "中国佛山",
+         //     "sex": "女",
+         //     "id": 3,
+         //     "email": "yoyo.wu@gmail.com",
+         //     "username": "杨惠妍"
+         //   },
+          console.log("子组件dialogFormVisible: ",this.dialogFormVisible, " 子组件form: ",this.form)
+       },
+      methods: {
             //更新表单
             updateForm: function (formName) {
                 let itemId = formName.id;
