@@ -7,9 +7,11 @@
            <!--列布局器-->
             <el-col :span="4" class="menu">
                 <!--调用左侧仪表板组件-->
-                <db-sidebar></db-sidebar>
-                <db-sidebar></db-sidebar>
-                <db-sidebar></db-sidebar>
+<!--                <sales-demo></sales-demo>-->
+                <a href="/#/sales" class="sales"> echarts sales-demo </a><br/>
+                <a href="/#/cir" class="cir">循环气体流量</a><br/>
+                <a href="/#/dou" class="dou">双坐标轴测试</a><br/>
+                <a href="/#/jq" class="dou">jQuery使用测试</a><br/>
                 <db-sidebar></db-sidebar>
                 <db-sidebar></db-sidebar>
                 <db-sidebar></db-sidebar>
@@ -44,7 +46,7 @@
     import DbTable from './DbTable.vue'
     import DbFooter from './DbFooter.vue'
     import ElRow from "element-ui/packages/row/src/row";
-
+    import SalesDemo from './echarts/SalesDemo'
     //导出组件
     export default {
         name: 'UserInfo',
@@ -53,7 +55,8 @@
             DbSidebar,
             DbFilterinput,
             DbTable,
-            DbFooter
+            DbFooter,
+            SalesDemo
         },
     }
 

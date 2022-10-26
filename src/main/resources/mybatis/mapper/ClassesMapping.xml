@@ -13,7 +13,7 @@
         </collection>
     </resultMap>
     <select id="findClassesWithTeacher" parameterType="Integer" resultMap="ClassesWithTeacherResult">
-		select * from t_classes c,t_teacher t,t_classessTeacher ct
+		select * from test.t_classes c,test.t_teacher t,test.t_classessTeacher ct
 		where ct.cid=c.cid
 		and ct.tid=t.tid
 		and c.cid=#{cid}

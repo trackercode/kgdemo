@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mvc.kgdemo.dao.TimeAreaDao">
+
+    <select id="queryByTime" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select * from test.time_area  where 1 = 1
+        <if test="starttime != null and starttime != ''">
+            AND starttime > #{starttime}
+        </if>
+        <if test="endtime != null and endtime != ''">
+            AND endtime &lt;  #{endtime}
+        </if>
+    </select>
+
+</mapper>

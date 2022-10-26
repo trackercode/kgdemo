@@ -9,11 +9,11 @@
     </resultMap>
 
     <select id="findOneAccount" resultType="com.mvc.kgdemo.domain.AccountUser">
-        select a.*,u.username,u.address from account a ,user u where a.uid = u.id and a.uid = #{id};
+        select a.*,u.username,u.address from test.account a ,test.user u where a.uid = u.id and a.uid = #{id};
     </select>
 
     <select id="findAllAccount" resultType="com.mvc.kgdemo.domain.AccountUser">
-        select a.*,u.username,u.address from account a ,user u where a.uid = u.id;
+        select a.*,u.username,u.address from test.account a ,test.user u where a.uid = u.id;
     </select>
 
 </mapper>

@@ -1,15 +1,19 @@
 server:
   port: 8088
 spring:
+  application:
+    name: test-db2
   datasource:
-    username: root
-    password: KG_^2Fir9C5
-    url: jdbc:mysql://localhost:3366/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+    url: jdbc:db2://43.228.77.178:50013/testdb:currentSchema=TEST;
+    username: db2inst1
+    password: ht_manager_0710
   jpa:
+    database-platform: org.hibernate.dialect.DB2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
+
 
 #mapper-locations应该具体查看target/classes下的目录结构
 mybatis:

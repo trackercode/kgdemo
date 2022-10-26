@@ -15,6 +15,8 @@ import {
   FormItem,
   Input,
   Dialog,
+  Message,
+  MessageBox,
   Option
 } from 'element-ui'
 
@@ -25,14 +27,20 @@ import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
+import * as echarts from 'echarts'
 
 // 优雅的导入第三方库
 //日期处理库
 import moment from 'moment'
 //网络请求
 import axios from 'axios'
+// 字符串处理库
+//简单来说：qs是查询字符串解析和将对象序列化的库；而vue在请求的时候，当我们的data中有数组的时候，是需要序列化才能与后台进行通讯的。
+import qs from 'qs'
 //魔幻线条框架
 import curvejs from 'curvejs'
+
+import jquery from "jquery"
 
 /**
  * 重新定义vue对象
@@ -48,6 +56,11 @@ import curvejs from 'curvejs'
 Object.defineProperty(Vue.prototype, '$moment', { value: moment });
 Object.defineProperty(Vue.prototype, '$axios', { value: axios });
 Object.defineProperty(Vue.prototype, '$curvejs', { value: curvejs });
+Object.defineProperty(Vue.prototype, '$qs', { value: qs });
+Object.defineProperty(Vue.prototype, '$msg', { value: Message });
+Object.defineProperty(Vue.prototype, '$mb', { value: MessageBox });
+Object.defineProperty(Vue.prototype, '$echarts', { value: echarts });
+Object.defineProperty(Vue.prototype, '$', { value: jquery });
 
 //使用组件ElimentUi
 Vue.use(Button);
@@ -62,6 +75,7 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
+Vue.use(echarts);
 //使用语言组件
 locale.use(lang);
 

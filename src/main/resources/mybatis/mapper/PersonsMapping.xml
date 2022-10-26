@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="findSex" resultType="java.util.HashMap">
-        select distinct p.sex from persons p
+        select distinct p.sex from test.persons p
     </select>
 
     <select id="findAll" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -24,22 +24,22 @@
                 p.sex as "sex",
                 p.username as "username",
                 p.zone as "zone"
-                from persons p where 1=1
+                from test.persons p where 1=1
         <if test="sex != null and sex != ''">AND p.sex = #{sex}</if>
         <if test="email != null and email != ''">AND p.email LIKE '%${email}%'</if>
     </select>
     <select id="findBySexAndEmailContains" resultType="com.mvc.kgdemo.domain.Persons">
-        select * from user where id = #{id}
+        select * from test.user where id = #{id}
     </select>
     <select id="findBySex" resultType="java.util.HashMap">
         <if test="sex != null and sex != ''">
-            select distinct p.sex from persons p where p.sex = #{sex}
+            select distinct p.sex from test.persons p where p.sex = #{sex}
         </if>
 
     </select>
 
     <select id="findById" resultType="com.mvc.kgdemo.domain.Persons">
-        select * from user
+        select * from test.user
     </select>
 
     <select id="findOne" resultType="com.mvc.kgdemo.domain.Persons">
@@ -50,11 +50,11 @@
                p.sex as "sex",
                p.username as "username",
                p.zone as "zone"
-        from persons p where p.id = #{itemId}
+        from test.persons p where p.id = #{itemId}
     </select>
 
     <update id="updateById" parameterType="com.mvc.kgdemo.domain.Persons">
-        UPDATE persons SET
+        UPDATE test.persons SET
         <trim suffix="" suffixOverrides=",">
             <if test="id != null and id != ''">id = #{id}, </if>
             <if test="createDatetime != null and createDatetime != ''">create_datetime  = #{createDatetime}, </if>
@@ -77,7 +77,7 @@
         p.sex as "sex",
         p.username as "username",
         p.zone as "zone"
-        from persons p where 1=1
+        from test.persons p where 1=1
         <if test="sex != null and sex != ''">AND p.sex = #{sex}</if>
         <if test="email != null and email != ''">AND p.email LIKE '%${email}%'</if>
     </select>
