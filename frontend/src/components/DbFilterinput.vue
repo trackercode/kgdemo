@@ -59,6 +59,10 @@
         },
 
         methods: {
+          change() {
+            console.log("检测性别改变"+this.formInline.sex);
+          },
+
           /**
            * 定义 条件查询事filterResultData，事件的本质是一个函数。绑定就是对应关系。
             //根据【性别】和【电子邮箱】查询人员信息
