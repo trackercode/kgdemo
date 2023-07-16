@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #测试项目所需组件
 ##spring工程
 <li>Lombok  
@@ -13,4 +14,7 @@ mybatis分页插件PageHandler
  #前端
  frontend
  
+=======
+# Kgdemo
+>>>>>>> a7387c82d61bd85d984b1533b80ed33957a53730
 
